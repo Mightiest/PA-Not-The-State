@@ -1,4 +1,3 @@
-//Lilly
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,12 +14,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.*;
+import java.util.*;
 
 public class WelcomeScreen extends JFrame implements ActionListener{
 
-   private JLabel label;
-   private JButton playButton;
-   private JButton quitButton;
+   private static JLabel label;
+   private static JButton playButton;
+   private static JButton quitButton;
    
    public WelcomeScreen(){
    
@@ -60,7 +61,12 @@ public class WelcomeScreen extends JFrame implements ActionListener{
          dispose();
       }
       else if(sourceEvent == playButton){
-         dispose();//should go to the play screen with questions
+         
+         GamePlay playGame = new GamePlay();
+         playGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         playGame.pack();
+         playGame.setVisible(true);
+
       }
    }
       
@@ -77,13 +83,15 @@ public class WelcomeScreen extends JFrame implements ActionListener{
       size.gridy = 1;
       playScreen.add(intro , size);
       
-      
       playScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       playScreen.pack();
       playScreen.setVisible(true);
+      
+      playScreen.getContentPane().setBackground(Color.yellow);
+      quitButton.setBackground(Color.gray);
+      playButton.setBackground(Color.gray);
       
       
    }
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////
