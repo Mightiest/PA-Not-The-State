@@ -41,7 +41,10 @@ public class GamePlay extends JFrame implements ActionListener{
    private static JButton first;
    private static JButton second;   
    private static JLabel label2;
+   private static JLabel complete;
+   private static JButton quitGame;
    private static String question;
+   private static int i;
    public static ArrayList<String>text = new ArrayList<String>();
    public static ArrayList<String>questions = new ArrayList<String>();
    
@@ -80,15 +83,26 @@ public class GamePlay extends JFrame implements ActionListener{
    
    }
    
-   @Override
-   public void actionPerformed(ActionEvent e){
-      JButton sourceEvent = (JButton) e.getSource();
-      if(sourceEvent == first){
-         dispose();
-      }
-      else if(sourceEvent == second){
-         dispose();
-      }
+   public GamePlay(String quit){
+      complete = new JLabel("END OF GAME");
+      complete.setSize(275,180);
+      GridBagConstraints u = new GridBagConstraints();
+      setLayout(new GridBagLayout());
+      u.insets = new Insets(10 , 10 , 1 , 0);
+      u.fill = GridBagConstraints.LINE_END;
+      u.gridx = 0;
+      u.gridy = 0;
+      complete.setFont(new Font("Serif" , 1 , 65));
+      add(complete , u);
+      
+      quitGame = new JButton("QUIT");
+      quitGame.addActionListener(this);
+      GridBagConstraints finis = new GridBagConstraints();
+      finis.insets = new Insets(0 , 5 , 10 , 10);
+      finis.fill = GridBagConstraints.LINE_END;
+      finis.gridx = 0;
+      finis.gridy = 3;
+      add(quitGame , finis);
    }
 
    public static int randNum (int min, int max){
@@ -122,5 +136,52 @@ public class GamePlay extends JFrame implements ActionListener{
       
      return question; 
    } 
+   
+   public static void nextQuestion(){
+      GamePlay playy = new GamePlay();
+      playy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      playy.pack();
+      playy.setVisible(true);
+   }
+   
+   public static void endOfGame(){
+      GamePlay finish = new GamePlay("q");
+      finish.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      finish.pack();
+      finish.setVisible(true);
+
+   }
+   
+   @Override
+   public void actionPerformed(ActionEvent e){
+      JButton sourceEvent = (JButton) e.getSource();
+      
+      if(sourceEvent == first){
+         if(i < 5){
+            nextQuestion();
+            i++;
+            dispose();
+         }
+         else if(i == 5){
+            endOfGame();
+            dispose();
+         }
+      }
+      else if(sourceEvent == second){
+         if(i < 5){
+            nextQuestion();
+            i++;
+            dispose();
+         }
+         else if(i == 5){
+            endOfGame();
+            dispose();
+         }
+      }
+      else if(sourceEvent == quitGame){
+         dispose();
+      }
+      
+   }
    
 }
