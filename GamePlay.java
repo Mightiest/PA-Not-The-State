@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 
 import javax.swing.JLabel;
 
+
 import javax.swing.JOptionPane;
 
 import javax.swing.JTable;
@@ -62,6 +63,8 @@ public class GamePlay extends JFrame implements ActionListener{
       q.gridy = 0;
       label2.setFont(new Font("Serif" , 1 ,25));
       add(label2 , q);
+      label2.Foreground(Color.white);
+      labe12.Background(Color.black);
       
       first = new JButton("1st choice");
       first.addActionListener(this);
@@ -71,6 +74,8 @@ public class GamePlay extends JFrame implements ActionListener{
       fir.gridx = 0;
       fir.gridy = 2;
       add(first , fir);
+      first.setBackground(Color.cyan);
+      first.Foreground(Color.white);
       
       second = new JButton("2nd choice");
       second.addActionListener(this);
@@ -80,11 +85,14 @@ public class GamePlay extends JFrame implements ActionListener{
       sec.gridx = 0;
       sec.gridy = 3;
       add(second , sec);
+      second.setBackground(Color.red);
+      second.setForeground(Color.white);
    
    }
    
    public GamePlay(String quit){
       complete = new JLabel("END OF GAME");
+      
       complete.setSize(275,180);
       GridBagConstraints u = new GridBagConstraints();
       setLayout(new GridBagLayout());
@@ -103,6 +111,7 @@ public class GamePlay extends JFrame implements ActionListener{
       finis.gridx = 0;
       finis.gridy = 3;
       add(quitGame , finis);
+      quitGame.setBackground(Color.pink);
    }
 
    public static int randNum (int min, int max){
